@@ -9,7 +9,7 @@ function Index(props) {
                     <div class="row">
                         {
                             props.goods.map(item => {
-                                return <Product item={item} />
+                                return <Product item={item} handleSelectProduct={props.handleBuyGoods} />
                             })
                         }
                     </div>

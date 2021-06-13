@@ -21,7 +21,7 @@ const Content = styled.div`
 `
 
 function Product(props) {
-    const { name ,price ,image ,disabled ,totalNumber } = props.item
+    const { id,name ,price ,image ,disabled ,totalNumber } = props.item
     return (
         <PrductDiv className="col-md-4">
             <div class="card">
@@ -30,7 +30,14 @@ function Product(props) {
                     <Content>{name}</Content>
                     <Content>ราคา {price}</Content>
                     <Content>
-                        <SelectButton disabled={disabled} totalNumber={totalNumber} />
+                        <SelectButton 
+                            disabled={disabled}
+                            totalNumber={totalNumber} 
+                            disabled={disabled}
+                            onClick={() => {
+                                props.handleSelectProduct(id)
+                            }} 
+                        />
                     </Content>
                 </div>
             </div>
@@ -39,10 +46,10 @@ function Product(props) {
 }
 
 function SelectButton(props) {
-    if(props.totalNumber === 0){
-        return   <Button variant="btn btn-secondary" disabled={true}>select</Button>
+    if(props.totalNumber === 0 && props.disabled === false){
+        return   <Button variant="btn btn-secondary"  disabled={true}>Out of stock</Button>
     }
-    return   <Button variant="success" disabled={props.disabled}>select</Button>
+    return   <Button variant="success" onClick={props.onClick} disabled={props.disabled}>select</Button>
 }
 export default Product
 
